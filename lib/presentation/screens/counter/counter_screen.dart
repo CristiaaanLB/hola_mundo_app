@@ -15,7 +15,16 @@ class _CounterScreenState extends State<CounterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Counter Screen')
+        title: const Text('Counter Screen'),
+        actions: [
+          IconButton(icon: const Icon(Icons.refresh_rounded),
+            onPressed: (){
+              setState(() {
+                clickCounter = 0;
+              });
+            }
+          )
+        ]
       ),
       body: Center(
         child: Column(
@@ -26,13 +35,30 @@ class _CounterScreenState extends State<CounterScreen> {
           ]
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          clickCounter++;
-          setState(() {});
-        },
-        child: Icon(Icons.plus_one),
-        ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end, //Boton en la esquina
+        children: [
+          FloatingActionButton(
+            onPressed: (){
+              clickCounter++;
+                setState(() {});
+          },
+          child: const Icon(Icons.plus_one),
+          ),
+
+          const SizedBox(height: 10,),
+
+          FloatingActionButton(
+            onPressed: (){
+              clickCounter--;
+              setState(() {
+                
+              });
+            },
+            child: const Icon(Icons.exposure_minus_1_outlined),
+            )
+        ],
+      ),
     );
   }
 }
